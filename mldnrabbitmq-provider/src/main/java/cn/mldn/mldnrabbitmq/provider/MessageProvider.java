@@ -3,6 +3,7 @@ package cn.mldn.mldnrabbitmq.provider;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
+import com.rabbitmq.client.MessageProperties;
 
 public class MessageProvider {
 	private static final String HOST = "rabbitmq-single" ;
@@ -29,8 +30,8 @@ public class MessageProvider {
 		long start = System.currentTimeMillis() ;
 		for (int x = 0 ; x < 10 ; x ++) {
 			String msg = "mldnjava - " + x ;
-			channel.basicPublish("", QUEUE_NAME, null, msg.getBytes());
-		}
+			channel.basicPublish("", QUEUE_NAME, MessageProperties.PERSISTENT_TEXT_PLAIN, msg.getBytes());
+		} 
 		long end = System.currentTimeMillis() ;
 		System.out.println("消息处理的时间：" + (end - start));
 		channel.close();
