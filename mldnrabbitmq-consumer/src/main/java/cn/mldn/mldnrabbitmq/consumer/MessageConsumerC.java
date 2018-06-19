@@ -9,13 +9,13 @@ import com.rabbitmq.client.DefaultConsumer;
 import com.rabbitmq.client.Envelope;
 import com.rabbitmq.client.AMQP.BasicProperties;
 
-public class MessageConsumer {
+public class MessageConsumerC {
 	private static final String HOST = "rabbitmq-single" ;
 	private static final int PORT = 5672 ;
 	private static final String USERNAME = "mldn" ;
 	private static final String PASSWORD = "java" ;
 	// 定义消息的发送队列名称，如果此队列不存在则可以自动创建
-	private static final String QUEUE_NAME = "mldn.msg.queue" ;
+	private static final String QUEUE_NAME = "mldn.msg.queue.c" ;
 	private static final String VHOST = "/mldnjava" ;
 	private static final String EXCHANGE_NAME = "mldn.exchange.fanout" ;
 	public static void main(String[] args) throws Exception {
@@ -35,7 +35,7 @@ public class MessageConsumer {
 			public void handleDelivery(String consumerTag, Envelope envelope, BasicProperties properties, byte[] body)
 					throws IOException {	// 进行消息的接收
 				String msg = new String(body) ;
-				System.err.println("【消费者】" + msg);
+				System.err.println("【消费者 - C】" + msg);
 			}
 		}) ;
 	}
