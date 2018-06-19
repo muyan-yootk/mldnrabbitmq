@@ -15,10 +15,10 @@ public class MessageConsumerC {
 	private static final String USERNAME = "mldn" ;
 	private static final String PASSWORD = "java" ;
 	// 定义消息的发送队列名称，如果此队列不存在则可以自动创建
-	private static final String QUEUE_NAME = "mldn.msg.queue.c" ;
+	private static final String QUEUE_NAME = "mldn.queue.spring" ;
 	private static final String VHOST = "/mldnjava" ;
 	private static final String ROUTING_KEY = "mldn-key" ;
-	private static final String EXCHANGE_NAME = "mldn.exchange.topic" ;
+	private static final String EXCHANGE_NAME = "mldn.msg.spring" ;
 	public static void main(String[] args) throws Exception {
 		ConnectionFactory factory = new ConnectionFactory() ; // 创建连接工厂
 		factory.setVirtualHost(VHOST);
@@ -29,7 +29,7 @@ public class MessageConsumerC {
 		Connection connection = factory.newConnection() ; // 创建一个新的连接 
 		Channel channel = connection.createChannel() ; // 创建连接通道
 		channel.queueDeclare(QUEUE_NAME, true, false, true, null) ;	// 定义队列
-		channel.exchangeDeclare(EXCHANGE_NAME, "topic") ; // 创建fanout交换空间
+		channel.exchangeDeclare(EXCHANGE_NAME, "direct", true, true, null); // 创建fanout交换空间
 		channel.queueBind(QUEUE_NAME, EXCHANGE_NAME, ROUTING_KEY) ; 	// 队列需要与交换空间绑定
 		channel.basicConsume(QUEUE_NAME, new DefaultConsumer(channel) {
 			@Override

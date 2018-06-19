@@ -1,0 +1,22 @@
+package cn.mldn.service.impl;
+
+import org.springframework.amqp.core.AmqpTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.stereotype.Service;
+
+import cn.mldn.service.IMessageService;
+@Service
+@PropertySource("classpath:config/rabbitmq.properties")
+public class MessageServiceImpl implements IMessageService {
+	@Autowired
+	private AmqpTemplate amqpTemplate ;
+	@Value("${mq.rabbit.routing.key}") 
+	private String routingKey ;
+	@Override
+	public void send(String msg) {
+		this.amqpTemplate.convertAndSend(this.routingKey, msg);
+	}
+
+}

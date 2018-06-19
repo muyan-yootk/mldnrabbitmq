@@ -17,7 +17,7 @@ public class MessageConsumerA {
 	// 定义消息的发送队列名称，如果此队列不存在则可以自动创建
 	private static final String QUEUE_NAME = "mldn.msg.queue.a" ;
 	private static final String VHOST = "/mldnjava" ;
-	private static final String EXCHANGE_NAME = "mldn.exchange.direct" ;
+	private static final String EXCHANGE_NAME = "mldn.msg.spring" ;
 	public static void main(String[] args) throws Exception {
 		ConnectionFactory factory = new ConnectionFactory() ; // 创建连接工厂
 		factory.setVirtualHost(VHOST);
