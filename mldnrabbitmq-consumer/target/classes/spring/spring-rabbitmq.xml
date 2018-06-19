@@ -10,7 +10,7 @@
 	<context:property-placeholder location="classpath:config/rabbitmq.properties" />
 	<!-- 1、如果要想进行RabbiMQ的操作管理，则首先一定要准备出一个连接工厂类 -->
 	<rabbit:connection-factory id="connectionFactory"
-		host="${mq.rabbit.host}" port="${mq.rabbit.port}" username="${mq.rabbit.username}"
+		addresses="${mq.rabbit.address}" username="${mq.rabbit.username}"
 		password="${mq.rabbit.password}" virtual-host="${mq.rabbit.vhost}" />
 	<!-- 2、所有的连接工厂要求被RabbitMQ所管理 -->
 	<rabbit:admin connection-factory="connectionFactory" />

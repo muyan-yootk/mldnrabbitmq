@@ -7,18 +7,17 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import cn.mldn.service.IMessageService;
-import cn.mldn.vo.Dept;
 
-@ContextConfiguration(locations= {"classpath:spring/spring-*.xml"})
+@ContextConfiguration(locations = { "classpath:spring/spring-*.xml" })
 @RunWith(SpringJUnit4ClassRunner.class)
 public class TestMessageService {
 	@Autowired
-	private IMessageService messageService ;
+	private IMessageService messageService;
+
 	@Test
 	public void testSend() {
-		Dept dept = new Dept() ;
-		dept.setDeptno(77L);
-		dept.setDname("高人的部门");
-		this.messageService.send(dept);
+		for (int x = 0; x < 1000; x++) {
+			this.messageService.send("www.mldn.cn - " + x);
+		}
 	}
 }
