@@ -11,7 +11,8 @@ public class MessageProvider {
 	private static final String USERNAME = "mldn" ;
 	private static final String PASSWORD = "java" ;
 	private static final String VHOST = "/mldnjava" ;
-	private static final String EXCHANGE_NAME = "mldn.exchange.fanout" ;
+	private static final String EXCHANGE_NAME = "mldn.exchange.topic" ;
+	private static final String ROUTING_KEY = "mldn-key" ;
 	public static void main(String[] args) throws Exception {
 		ConnectionFactory factory = new ConnectionFactory() ; // 创建连接工厂
 		factory.setVirtualHost(VHOST);
@@ -21,11 +22,11 @@ public class MessageProvider {
 		factory.setPassword(PASSWORD); 	// 连接密码
 		Connection connection = factory.newConnection() ; // 创建一个新的连接
 		Channel channel = connection.createChannel() ; // 创建连接通道
-		channel.exchangeDeclare(EXCHANGE_NAME, "fanout") ; // 创建fanout交换空间
+		channel.exchangeDeclare(EXCHANGE_NAME, "topic") ; // 创建direct交换空间
 		long start = System.currentTimeMillis() ;
 		for (int x = 0 ; x < 10 ; x ++) {
 			String msg = "mldnjava - " + x ;
-			channel.basicPublish(EXCHANGE_NAME, "", MessageProperties.PERSISTENT_TEXT_PLAIN, msg.getBytes());
+			channel.basicPublish(EXCHANGE_NAME, ROUTING_KEY, MessageProperties.PERSISTENT_TEXT_PLAIN, msg.getBytes());
 		}  
 		long end = System.currentTimeMillis() ;
 		System.out.println("消息处理的时间：" + (end - start));
