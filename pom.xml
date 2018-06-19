@@ -57,9 +57,22 @@
 		<oltu.version>1.0.2</oltu.version>
 		<amqp-client.version>5.3.0</amqp-client.version>
 		<spring-rabbit.version>2.0.4.RELEASE</spring-rabbit.version>
+		<fastjson.version>1.2.47</fastjson.version>
+		<mldnshiro.version>0.0.1</mldnshiro.version>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>fastjson</artifactId>
+				<version>${fastjson.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>cn.mldn</groupId>
+				<artifactId>mldnshiro-api</artifactId>
+				<version>${mldnshiro.version}</version>
+			</dependency>
 			<dependency>
 				<groupId>org.springframework.amqp</groupId>
 				<artifactId>spring-rabbit</artifactId>
@@ -519,5 +532,6 @@
 	<modules>
 		<module>mldnrabbitmq-provider</module>
 		<module>mldnrabbitmq-consumer</module>
+		<module>mldnrabbitmq-consumer-dubbo</module>
 	</modules>
 </project>
