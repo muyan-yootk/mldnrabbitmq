@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>cn.mldn</groupId>
@@ -53,9 +55,15 @@
 		<slf4j-log4j12.version>1.7.25</slf4j-log4j12.version>
 		<shiro.version>1.3.2</shiro.version>
 		<oltu.version>1.0.2</oltu.version>
+		<amqp-client.version>5.3.0</amqp-client.version>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
+			<dependency>
+				<groupId>com.rabbitmq</groupId>
+				<artifactId>amqp-client</artifactId>
+				<version>${amqp-client.version}</version>
+			</dependency>
 
 			<dependency>
 				<groupId>org.apache.oltu.oauth2</groupId>
@@ -500,8 +508,8 @@
 			</plugin>
 		</plugins>
 	</build>
-  <modules>
-    <module>mldnrabbitmq-provider</module>
-    <module>mldnrabbitmq-consumer</module>
-  </modules>
+	<modules>
+		<module>mldnrabbitmq-provider</module>
+		<module>mldnrabbitmq-consumer</module>
+	</modules>
 </project>
